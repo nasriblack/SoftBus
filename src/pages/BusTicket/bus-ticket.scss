@@ -2,8 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f7f7f7;
-
 }
 
 .booking-div {
@@ -11,7 +9,7 @@
     background-color: white;
     border: 1px solid grey;
     border-radius: 15px;
-    width: 70rem;
+    min-width: 40rem;
     height: 40rem;
     margin: 80px 80px;
 }

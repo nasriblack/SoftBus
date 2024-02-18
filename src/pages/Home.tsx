@@ -4,7 +4,8 @@ import header_shape from '../assets/svg/header-shape-1.svg';
 function Home() {
   return (
     <>
-      <div>
+      <div className="header__navbar">
+        <div className="shader__shape"></div>
         <nav>
           <div className="nav__logo">SoftBus</div>
           <ul className="nav__links">
