@@ -21,23 +21,19 @@ const BusTicketScreen: FC<BusTicketScreenProps> = () => {
           </div>
           <div className="bus__presentation">
             <img src={wheel} alt="" />
-            <div className="bus__seat__column">
+            <div className="seats">
               <BoxSeatLegend color="red" legendName="" num={1} />
               <BoxSeatLegend color="white" legendName="" num={2} />
               <BoxSeatLegend color="white" legendName="" num={3} />
               <BoxSeatLegend color="green" legendName="" num={4} />
               <BoxSeatLegend color="green" legendName="" num={5} />
               <BoxSeatLegend color="white" legendName="" num={6} />
-            </div>
-            <div className="bus__seat__column">
               <BoxSeatLegend color="green" legendName="" num={7} />
               <BoxSeatLegend color="green" legendName="" num={8} />
               <BoxSeatLegend color="white" legendName="" num={9} />
               <BoxSeatLegend color="green" legendName="" num={10} />
               <BoxSeatLegend color="white" legendName="" num={11} />
               <BoxSeatLegend color="green" legendName="" num={12} />
-            </div>
-            <div className="bus__seat__column">
               <BoxSeatLegend color="green" legendName="" num={13} />
               <BoxSeatLegend color="white" legendName="" num={14} />
               <BoxSeatLegend color="green" legendName="" num={15} />

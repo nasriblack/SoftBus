@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .booking-div {
@@ -12,6 +15,11 @@
     min-width: 40rem;
     height: 40rem;
     margin: 80px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
 }
 
 .booking-div .header-direction {
@@ -52,9 +60,9 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100%;
+    width: 75%;
     height: 50%;
-    border:6px solid rgba(72,76,85,.1) ;
+    border: 6px solid rgba(72, 76, 85, .1);
     border-top-left-radius: 140px 55px;
     border-top-right-radius: 140px 55px;
     border-bottom-right-radius: 140px 55px;
@@ -71,10 +79,25 @@
 .bus__presentation .bus__seat__column {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: initial;
     align-items: center;
     justify-content: space-around;
     width: 100%;
     height: 100%;
     padding: 0 8rem;
+
+}
+
+.bus__presentation .seats {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: initial;
+    align-items: center;
+    justify-content: space-around;
+    gap: 25px;
 
 }
