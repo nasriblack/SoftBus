@@ -20,8 +20,9 @@ const BusTicketScreen: FC<BusTicketScreenProps> = () => {
                 data.data[0].destinations.map((destination: string, index) => {
                   return (
                     <Fragment key={index}>
-                      <div>{destination}</div>
+                      {/* TODO here to put an icon of currently emplacement */}
                       <i className="ri-arrow-right-fill"></i>
+                      <div>{destination}</div>
                     </Fragment>
                   );
                 })}
