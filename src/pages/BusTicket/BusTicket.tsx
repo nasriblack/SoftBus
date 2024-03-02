@@ -2,10 +2,13 @@ import React, { FC } from 'react';
 import BoxSeatLegend from './BoxSeatLegend';
 import wheel from '../../assets/img/steering-wheel.png';
 import HeaderLayout from '../../layouts/HeaderLayout';
+import { useGetBus } from '../../api/bus';
 
 interface BusTicketScreenProps {}
 
 const BusTicketScreen: FC<BusTicketScreenProps> = () => {
+  const { data, isFetching } = useGetBus('112');
+
   return (
     <>
       <HeaderLayout>
