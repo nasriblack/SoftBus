@@ -3,7 +3,7 @@ import { FC } from 'react';
 interface BoxSeatLegendProps {
   color: 'red' | 'green' | 'white';
   legendName?: string;
-  num?: number;
+  num?: string;
 }
 
 const BoxSeatLegend: FC<BoxSeatLegendProps> = ({ color, legendName, num }) => {

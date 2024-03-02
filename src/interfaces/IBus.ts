@@ -4,13 +4,18 @@ export interface ISeats {
     _id:any
 }
 
+export interface IResponseApi {
+    data:IBus[]
+    success:boolean
+}
+
 
 export interface IBus {
     _id:any;
     BusNum:string;
     NbrOfSeats:number;
     destinations:[string];
-    seats: ISeats;
+    seats: ISeats[];
     createdAt:Date;
     updatedAt:Date;
 }

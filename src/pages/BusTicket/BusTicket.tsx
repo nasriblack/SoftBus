@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import BoxSeatLegend from './BoxSeatLegend';
 import wheel from '../../assets/img/steering-wheel.png';
 import HeaderLayout from '../../layouts/HeaderLayout';
@@ -7,7 +7,7 @@ import { useGetBus } from '../../api/bus';
 interface BusTicketScreenProps {}
 
 const BusTicketScreen: FC<BusTicketScreenProps> = () => {
-  const { data, isFetching } = useGetBus('112');
+  const { data, isFetching, isLoading, isSuccess } = useGetBus('112');
 
   return (
     <>
@@ -15,9 +15,16 @@ const BusTicketScreen: FC<BusTicketScreenProps> = () => {
         <div className="bus-ticket-screen">
           <div className="booking-div">
             <div className="header-direction">
-              <div>Tunis</div>
-              <i className="ri-arrow-right-fill"></i>
-              <div>Nabeul</div>
+              {data &&
+                isSuccess &&
+                data.data[0].destinations.map((destination: string, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <div>{destination}</div>
+                      <i className="ri-arrow-right-fill"></i>
+                    </Fragment>
+                  );
+                })}
             </div>
             <div className="legend-seat">
               <BoxSeatLegend color="red" legendName="Selected" />
@@ -27,24 +34,19 @@ const BusTicketScreen: FC<BusTicketScreenProps> = () => {
             <div className="bus__presentation">
               <img src={wheel} alt="" />
               <div className="seats">
-                <BoxSeatLegend color="red" legendName="" num={1} />
-                <BoxSeatLegend color="white" legendName="" num={2} />
-                <BoxSeatLegend color="white" legendName="" num={3} />
-                <BoxSeatLegend color="green" legendName="" num={4} />
-                <BoxSeatLegend color="green" legendName="" num={5} />
-                <BoxSeatLegend color="white" legendName="" num={6} />
-                <BoxSeatLegend color="green" legendName="" num={7} />
-                <BoxSeatLegend color="green" legendName="" num={8} />
-                <BoxSeatLegend color="white" legendName="" num={9} />
-                <BoxSeatLegend color="green" legendName="" num={10} />
-                <BoxSeatLegend color="white" legendName="" num={11} />
-                <BoxSeatLegend color="green" legendName="" num={12} />
-                <BoxSeatLegend color="green" legendName="" num={13} />
-                <BoxSeatLegend color="white" legendName="" num={14} />
-                <BoxSeatLegend color="green" legendName="" num={15} />
-                <BoxSeatLegend color="white" legendName="" num={16} />
-                <BoxSeatLegend color="green" legendName="" num={17} />
-                <BoxSeatLegend color="white" legendName="" num={18} />
+                {data &&
+                  isSuccess &&
+                  data.data[0].seats.map((seats) => {
+                    return (
+                      <Fragment key={seats._id}>
+                        <BoxSeatLegend
+                          color="green"
+                          legendName=""
+                          num={seats.seat_number}
+                        />
+                      </Fragment>
+                    );
+                  })}
               </div>
             </div>
           </div>
