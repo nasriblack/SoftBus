@@ -9,6 +9,8 @@ interface BusTicketScreenProps {}
 const BusTicketScreen: FC<BusTicketScreenProps> = () => {
   const { data, isFetching, isLoading, isSuccess } = useGetBus('112');
 
+  console.log('checking the data', data?.data[0].seats);
+
   return (
     <>
       <HeaderLayout>
@@ -41,7 +43,10 @@ const BusTicketScreen: FC<BusTicketScreenProps> = () => {
                     return (
                       <Fragment key={seats._id}>
                         <BoxSeatLegend
-                          color="green"
+                          color={
+                            seats.user_name.length === 0 ? 'green' : 'white'
+                          }
+                          // color="green"
                           legendName=""
                           num={seats.seat_number}
                         />
