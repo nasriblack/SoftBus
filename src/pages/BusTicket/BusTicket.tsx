@@ -1,15 +1,16 @@
-import React, { FC, Fragment } from 'react';
-import BoxSeatLegend from './BoxSeatLegend';
-import wheel from '../../assets/img/steering-wheel.png';
+import React, { FC, Fragment, useEffect, useState } from 'react';
+import BoxSeatLegend from './components/BoxSeatLegend';
 import HeaderLayout from '../../layouts/HeaderLayout';
-import { useGetBus } from '../../api/bus';
+import { useGetBus, useUpdateBus } from '../../api/bus';
+import BusSeatComponent from './components/BusSeatLogique';
 
 interface BusTicketScreenProps {}
 
 const BusTicketScreen: FC<BusTicketScreenProps> = () => {
   const { data, isFetching, isLoading, isSuccess } = useGetBus('112');
 
-  console.log('checking the data', data?.data[0].seats);
+  console.log('checking the data', data?.data[0]);
+  const [SeatSelected, setSeatSelected] = useState(data?.data[0]._id);
 
   return (
     <>
@@ -34,27 +35,14 @@ const BusTicketScreen: FC<BusTicketScreenProps> = () => {
               <BoxSeatLegend color="green" legendName="Standard" />
               <BoxSeatLegend color="white" legendName="occupied" />
             </div>
-            <div className="bus__presentation">
-              <img src={wheel} alt="" />
-              <div className="seats">
-                {data &&
-                  isSuccess &&
-                  data.data[0].seats.map((seats) => {
-                    return (
-                      <Fragment key={seats._id}>
-                        <BoxSeatLegend
-                          color={
-                            seats.user_name.length === 0 ? 'green' : 'white'
-                          }
-                          // color="green"
-                          legendName=""
-                          num={seats.seat_number}
-                        />
-                      </Fragment>
-                    );
-                  })}
-              </div>
-            </div>
+            {data && (
+              <BusSeatComponent
+                data={data}
+                isSuccess={isSuccess}
+                setSeatSelected={setSeatSelected}
+                SeatSelected={SeatSelected}
+              />
+            )}
           </div>
         </div>
       </HeaderLayout>
