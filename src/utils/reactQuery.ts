@@ -85,8 +85,10 @@ export const useFetch = <T>(
     params?: object,
     updater?: (oldData: T, newData: S) => T
   ) => {
+    console.log('checking the urll', url)
     return useGenericMutation<T, S>(
-      (payload:any) => myApi.patch<S>(`${url}${payload.id}`, payload.data),
+      (payload:any) => {
+        return myApi.patch<S>(`${url}${payload.params.idBus}/${payload.params.idSeat}`,payload.data)},
       url,
       params,
       updater

@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useEffect } from 'react';
 import wheel from '../../../assets/img/steering-wheel.png';
 import BoxSeatLegend from './BoxSeatLegend';
 import { IResponseApi } from '../../../interfaces/IBus';
@@ -9,6 +9,7 @@ interface BusSeatComponentProps {
   isSuccess: boolean;
   setSeatSelected: (value: string) => void;
   SeatSelected: string;
+  refetch: any;
 }
 
 const BusSeatComponent: FC<BusSeatComponentProps> = ({
@@ -16,8 +17,14 @@ const BusSeatComponent: FC<BusSeatComponentProps> = ({
   isSuccess,
   setSeatSelected,
   SeatSelected,
+  refetch,
 }) => {
-  const mutation = useUpdateBus();
+  const { mutate, isSuccess: isSuccessMutation } = useUpdateBus();
+
+  useEffect(() => {
+    refetch();
+    return () => {};
+  }, [isSuccessMutation]);
 
   return (
     <>
@@ -30,16 +37,24 @@ const BusSeatComponent: FC<BusSeatComponentProps> = ({
               return (
                 <div
                   key={seats._id}
-                  //   onClick={() => {
-                  //     const payload = {
-                  //       id: SeatSelected,
-                  //       data: dummyData,
-                  //     };
-                  //     if (seats.user_name.length === 0) {
-                  //       //   setSeatSelected(seats._id);
-                  //       mutation.mutate(payload);
-                  //     }
-                  //   }}
+                  // onClick={() => {
+                  //   console.log('Clicked !', data.data[0]);
+                  // }}
+                  onClick={() => {
+                    const payload = {
+                      params: {
+                        idBus: data.data[0]._id,
+                        idSeat: seats._id,
+                      },
+                      data: {
+                        userName: 'Testing User',
+                      },
+                    };
+                    if (seats.user_name.length === 0) {
+                      //   setSeatSelected(seats._id);
+                      mutate(payload);
+                    }
+                  }}
                 >
                   <BoxSeatLegend
                     color={seats.user_name.length === 0 ? 'green' : 'white'}

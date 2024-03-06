@@ -7,7 +7,7 @@ import BusSeatComponent from './components/BusSeatLogique';
 interface BusTicketScreenProps {}
 
 const BusTicketScreen: FC<BusTicketScreenProps> = () => {
-  const { data, isFetching, isLoading, isSuccess } = useGetBus('112');
+  const { data, isFetching, isLoading, isSuccess, refetch } = useGetBus('112');
 
   console.log('checking the data', data?.data[0]);
   const [SeatSelected, setSeatSelected] = useState(data?.data[0]._id);
@@ -41,6 +41,7 @@ const BusTicketScreen: FC<BusTicketScreenProps> = () => {
                 isSuccess={isSuccess}
                 setSeatSelected={setSeatSelected}
                 SeatSelected={SeatSelected}
+                refetch={refetch}
               />
             )}
           </div>
