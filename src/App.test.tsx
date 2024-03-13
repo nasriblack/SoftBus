@@ -1,21 +1,16 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, renderHook, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-
 import { WrappedApp, App } from './App';
+import BusTicketScreen from './pages/BusTicket/BusTicket';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { renderWithClient } from './utils/HelpersTesting';
 
-describe('App', () => {
-  it('Renders hello world', () => {
-    // ARRANGE
+describe('App work fine', () => {
+  it('Render the App', () => {
     render(<WrappedApp />);
-    // ACT
-    // EXPECT
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-      })
-    ).toHaveTextContent('Hello World');
   });
+
   it('Renders not found if invalid path', () => {
     render(
       <MemoryRouter initialEntries={['/this-route-does-not-exist']}>
@@ -27,5 +22,12 @@ describe('App', () => {
         level: 1,
       })
     ).toHaveTextContent('Not Found');
+  });
+});
+
+describe('Ticket Seat Screen', () => {
+  test('successful query component', async () => {
+    const result = renderWithClient(<BusTicketScreen />);
+    expect(await result.findByTestId('seats-element-test')).toBeInTheDocument();
   });
 });

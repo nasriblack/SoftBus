@@ -30,7 +30,7 @@ const BusSeatComponent: FC<BusSeatComponentProps> = ({
     <>
       <div className="bus__presentation">
         <img src={wheel} alt="" />
-        <div className="seats">
+        <div data-testid="seats-element-test" className="seats">
           {data &&
             isSuccess &&
             data.data[0].seats.map((seats) => {
